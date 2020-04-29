@@ -1,0 +1,58 @@
+$input-font-size: 16px;
+
+$btn-font-sizes: (
+  "x-small" : 10px,
+  "small": 10.5px,
+  "default": 12px,
+  "large": 14px,
+  "x-large": 16px,
+);
+$material-light: (
+  'background': #EEEEEE
+);
+
+
+.theme--light {
+  .v-icon.list-item ,
+  .v-list-item .v-icon,
+  .container .v-icon {
+    color: #ff0000 !important;
+  }
+}
+
+.theme--light {
+  div > .list-item,
+  div > .v-list-item,
+  .v-list-item-title,
+  .error-alert,
+  .error-mobile-alert {
+    color: #ff0000 !important
+  }
+}
+
+.theme--light {
+  .navbar .v-toolbar-title,
+  .v-toolbar-content .v-app-bar-nav-icon,
+  .v-toolbar__content .v-btn--text {
+    color: #333333 !important;
+  }
+}
+//.theme--dark {
+//  .navbar .v-toolbartitle,
+//  .v-toolbarcontent .v-app-barnav-icon,
+//  .v-toolbar__content .v-btn--text {
+//    color: #E0E0E0 !important
+//  }
+//}
+
+.v-navigation-drawer .v-list-item:active:before {
+  background-color: var(--v-selected-base);
+  opacity: .25;
+}
+.v-navigation-drawer .v-list-item:hover {
+  background-color: var(--v-expandList-base) !important;
+  opacity: .8;
+}
+.v-navigation-drawer .v-list-item__title {
+  z-index: 1;
+}
