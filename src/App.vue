@@ -10,17 +10,22 @@
 
     data: () => ({
       drawer: false,
-      items: [
-        ['mdi-email', 'Inbox'],
-        ['mdi-account-supervisor-circle', 'Supervisors'],
-        ['mdi-clock-start', 'Clock-in'],
+      admins: [
+        ['Management', 'mdi-people_outline'],
+        ['Settings', 'mdi-settings'],
+      ],
+      cruds: [
+        ['Create', 'mdi-add'],
+        ['Read', 'mdi-insert_drive_file'],
+        ['Update', 'mdi-update'],
+        ['Delete', 'mdi-delete'],
       ],
     }),
   };
 </script>
 
 <template>
-  <v-app class="red">
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -28,30 +33,96 @@
 <!--      src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"-->
       <div>
         <v-text-field
-          class="mb-6"
+          class="mb-6 text--black"
           style="width: 90%; margin: auto"
           placeholder="Search"
         />
+<!--        <v-list>-->
+<!--          <v-list-item-->
+<!--            v-for="([icon, text], i) in items"-->
+<!--            :key="i"-->
+<!--          >-->
+<!--            <v-list-item-icon>-->
+<!--              <v-icon>{{ icon }}</v-icon>-->
+<!--            </v-list-item-icon>-->
+
+<!--            <v-list-item-content>-->
+<!--              <v-list-item-title>{{ text }}</v-list-item-title>-->
+<!--            </v-list-item-content>-->
+<!--          </v-list-item>-->
+<!--        </v-list>-->
         <v-list>
-          <v-list-item
-            v-for="([icon, text], i) in items"
-            :key="i"
-          >
+          <v-list-item>
             <v-list-item-icon>
-              <v-icon>{{ icon }}</v-icon>
+              <v-icon>mdi-home</v-icon>
             </v-list-item-icon>
 
-            <v-list-item-content>
-              <v-list-item-title>{{ text }}</v-list-item-title>
-            </v-list-item-content>
+            <v-list-item-title>Home</v-list-item-title>
           </v-list-item>
+
+          <v-list-group
+            prepend-icon="mdi-pen"
+            value="true"
+            class="text--black"
+            active-class="selected"
+            :ripple="false"
+          >
+            <template v-slot:activator>
+              <v-list-item-title>Users</v-list-item-title>
+            </template>
+
+            <v-list-group
+              no-action
+              sub-group
+              value="true"
+              :ripple="false"
+            >
+              <template v-slot:activator>
+                <v-list-item-content>
+                  <v-list-item-title>Admin</v-list-item-title>
+                </v-list-item-content>
+              </template>
+
+              <v-list-item
+                v-for="(admin, i) in admins"
+                :key="i"
+                link
+                :ripple="false"
+              >
+                <v-list-item-title v-text="admin[0]" />
+                <v-list-item-icon>
+                  <v-icon v-text="admin[1]" />
+                </v-list-item-icon>
+              </v-list-item>
+            </v-list-group>
+
+            <v-list-group
+              sub-group
+              no-action
+            >
+              <template v-slot:activator>
+                <v-list-item-content>
+                  <v-list-item-title>Actions</v-list-item-title>
+                </v-list-item-content>
+              </template>
+              <v-list-item
+                v-for="(crud, i) in cruds"
+                :key="i"
+              >
+                <v-list-item-title v-text="crud[0]"/>
+                <v-list-item-action>
+                  <v-icon v-text="crud[1]"/>
+                </v-list-item-action>
+              </v-list-item>
+            </v-list-group>
+          </v-list-group>
         </v-list>
       </div>
 
 
     </v-navigation-drawer>
 
-    <v-app-bar app color="primary" dark>
+    <v-app-bar app color="background">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <div class="d-flex align-center">
         <v-img
@@ -77,8 +148,10 @@
         v-model="$vuetify.theme.dark"
         hide-details
         inset
+        color="primary"
+        class="text--black"
         label="Theme Dark"
-      ></v-switch>
+      />
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
