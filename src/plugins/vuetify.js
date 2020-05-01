@@ -22,7 +22,7 @@ export default new Vuetify({
         hover: "#F6F6F6",
         preloader: "#1976D2",
         cardColor: "#ffffff",
-        expandList: "#464646",
+        expandList: "#f1f1f1",
         selected: "#EEEEEE",
         head: "#4A76A8",
         trNotActiveText: "#cccccc",
